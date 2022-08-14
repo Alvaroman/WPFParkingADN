@@ -26,16 +26,6 @@ namespace Ceiba.WPFParkingLotADN
             _host.Start();
             
             base.OnStartup(e);
-            ParkingLotEntitiesProvider test = new ParkingLotEntitiesProvider();
-            try
-            {
-                var rs = await test.GetParkingLotAsync();
-
-            }
-            catch (System.Exception ex)
-            {
-
-            }
         }
 
     }

@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "j1z80y3ynktB5jncV8JYlEKNSTcHejq9LhnshqKjMz+y0s1r1yHbNLglUXU+xKxTwiGz4BoKqu/eNrniIPF1Ww==",
+  "dgSpecHash": "tWVTya8/jmq/lh4X0Omws9a2OaTeV4w8CB7f9rurBoB+5so4BMUf3pGvtFy4g7EJFMdF4FafaM2NMNy+3BvpOA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Álvaro Morales\\source\\repos\\Ceiba.WPFParkingLotADN\\Ceiba.WPFParkingLotADN\\Ceiba.WPFParkingLotADN.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Álvaro Morales\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\Álvaro Morales\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\Álvaro Morales\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Álvaro Morales\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.0\\microsoft.extensions.configuration.6.0.0.nupkg.sha512",
     "C:\\Users\\Álvaro Morales\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Álvaro Morales\\.nuget\\packages\\microsoft.extensions.configuration.binder\\6.0.0\\microsoft.extensions.configuration.binder.6.0.0.nupkg.sha512",
@@ -29,6 +32,7 @@
     "C:\\Users\\Álvaro Morales\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\Álvaro Morales\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\6.0.0\\microsoft.extensions.options.configurationextensions.6.0.0.nupkg.sha512",
     "C:\\Users\\Álvaro Morales\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\Álvaro Morales\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Álvaro Morales\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\Álvaro Morales\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
     "C:\\Users\\Álvaro Morales\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
