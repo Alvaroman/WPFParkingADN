@@ -10,3 +10,4 @@ public class NavigateCommand<TViewModel> : CommandBase where TViewModel : ViewMo
 
     public override void Execute(object? parameter) => _navigationService.Navigate();
 }
+    

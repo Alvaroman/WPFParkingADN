@@ -14,10 +14,10 @@ public class VehicleListingViewModel : ViewModelBase
     private readonly ParkingLotStore _parkingLotStore;
 
     public VehicleListingViewModel(ParkingLotStore parkingLotStore,
-                                    NavigationService<VehicleListingViewModel> navigationService)
+                                   NavigationService<ParkVehicleViewModel> navigationService)
     {
         _parkingLotStore = parkingLotStore;
-        ParkVehicleCommand = new NavigateCommand<VehicleListingViewModel>(navigationService);
+        ParkVehicleCommand = new NavigateCommand<ParkVehicleViewModel>(navigationService);
         LoadVehiclesCommand = new LoadParkingRecordCommand(this, parkingLotStore);
         _vehicles = new ObservableCollection<VehicleParkedViewModel>();
     }
@@ -47,6 +47,8 @@ public class VehicleListingViewModel : ViewModelBase
     public IEnumerable<VehicleParkedViewModel> Vehicles => _vehicles;
     public ICommand ParkVehicleCommand { get; }
     public ICommand LoadVehiclesCommand { get; }
+    public ICommand ReleaseVehicleCommand { get; }
+
     public override void Dispose()
     {
         _parkingLotStore.VehicleRegistered -= OnVehicleParked;
@@ -58,7 +60,7 @@ public class VehicleListingViewModel : ViewModelBase
         VehicleParkedViewModel vehicleParkedViewModel = new VehicleParkedViewModel(parkingRecord);
         _vehicles.Add(vehicleParkedViewModel);
     }
-    public static VehicleListingViewModel LoadViewModel(ParkingLotStore parkingLotStore, NavigationService<VehicleListingViewModel> navigationService)
+    public static VehicleListingViewModel LoadViewModel(ParkingLotStore parkingLotStore, NavigationService<ParkVehicleViewModel> navigationService)
     {
         VehicleListingViewModel viewModel = new VehicleListingViewModel(parkingLotStore, navigationService);
         viewModel.LoadVehiclesCommand.Execute(null);

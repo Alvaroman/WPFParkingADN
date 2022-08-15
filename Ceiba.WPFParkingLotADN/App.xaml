@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:Ceiba.WPFParkingLotADN"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style  TargetType="Button">
+            <Setter Property="Padding" Value="10 5"></Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="2"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="Header">
+            <Setter Property="FontSize" Value="24"></Setter>
+        </Style>
     </Application.Resources>
 </Application>

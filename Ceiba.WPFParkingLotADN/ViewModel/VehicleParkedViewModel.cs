@@ -1,4 +1,5 @@
 ﻿using Ceiba.WPFParkingLotADN.Model;
+using System;
 
 namespace Ceiba.WPFParkingLotADN.ViewModel;
 public class VehicleParkedViewModel : ViewModelBase
@@ -9,6 +10,7 @@ public class VehicleParkedViewModel : ViewModelBase
         _parkingRecord = parkingRecord;
     }
 
+    public Guid Id => _parkingRecord.Id;
     public string Plate => _parkingRecord.Plate;
     public int Cylinder => _parkingRecord.Cylinder;
     public string StartAt => _parkingRecord.StartedAt.ToString("d");

@@ -47,4 +47,10 @@ public class ParkingLotStore
         _parkingRecords.Clear();
         _parkingRecords.AddRange(parkingRecords);
     }
+    public async Task<decimal> ReleaseVehicle(Guid Id)
+    {
+        var value = await _parkingLot.ReleaseVehicle(Id);
+        await Load();
+        return value;
+    }
 }

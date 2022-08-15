@@ -13,11 +13,11 @@ public class ParkVehicleCommand : AsyncCommandBase
 {
     private readonly ParkVehicleViewModel _parkVehicleViewModel;
     private readonly ParkingLotStore _parkingLotStore;
-    private readonly NavigationService _navigationService;
+    private readonly NavigationService<VehicleListingViewModel> _navigationService;
 
     public ParkVehicleCommand(ParkVehicleViewModel parkVehicleViewModel,
                               ParkingLotStore parkingLotStore,
-                              NavigationService navigationService)
+                              NavigationService<VehicleListingViewModel> navigationService)
     {
         _parkVehicleViewModel = parkVehicleViewModel;
         _parkingLotStore = parkingLotStore;
@@ -43,7 +43,8 @@ public class ParkVehicleCommand : AsyncCommandBase
                          && base.CanExecute(parameter);
     public override async Task ExecuteAsync(object? parameter)
     {
-        ParkingRecord parkingRecord = new ParkingRecord(_parkVehicleViewModel.VehicleType,
+        ParkingRecord parkingRecord = new ParkingRecord(_parkVehicleViewModel.Id,
+                                                        _parkVehicleViewModel.VehicleType,
                                                         _parkVehicleViewModel.Plate,
                                                         _parkVehicleViewModel.Cylinder,
                                                         _parkVehicleViewModel.StartAt,
@@ -65,3 +66,4 @@ public class ParkVehicleCommand : AsyncCommandBase
         }
     }
 }
+    

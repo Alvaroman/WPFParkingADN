@@ -3,13 +3,15 @@
 namespace Ceiba.WPFParkingLotADN.Model;
 public class ParkingRecord
 {
-    public ParkingRecord(int vehicleType,
+    public ParkingRecord(Guid id,
+                         int vehicleType,
                          string plate,
                          int cylinder,
                          DateTime startedAt,
                          DateTime finishedAt,
                          bool status)
     {
+        Id = id;
         VehicleType = vehicleType;
         Plate = plate;
         Cylinder = cylinder;

@@ -1,21 +1,38 @@
-﻿using Ceiba.WPFParkingLotADN.Model.Enum;
+﻿using Ceiba.WPFParkingLotADN.Commands;
+using Ceiba.WPFParkingLotADN.Model.Enum;
 using Ceiba.WPFParkingLotADN.Services;
 using Ceiba.WPFParkingLotADN.Stores;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Windows.Input;
 
 namespace Ceiba.WPFParkingLotADN.ViewModel;
 public class ParkVehicleViewModel : ViewModelBase, INotifyDataErrorInfo
 {
-    public bool HasErrors => throw new NotImplementedException();
     public readonly Dictionary<string, List<string>> _propertyNameToErrorsDictionary;
     public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
-    public ParkVehicleViewModel(ParkingLotStore parkingLotStore, NavigationService navigationService)
+    public ParkVehicleViewModel(ParkingLotStore parkingLotStore, NavigationService<VehicleListingViewModel> navigationService)
     {
         _propertyNameToErrorsDictionary = new Dictionary<string, List<string>>();
+        ParkCommand = new ParkVehicleCommand(this, parkingLotStore, navigationService);
+        CancelCommand = new NavigateCommand<VehicleListingViewModel>(navigationService);
     }
+    public ICommand ParkCommand { get; }
+    public ICommand CancelCommand { get; }
+    private Guid _id;
+    public Guid Id
+    {
+        get => _id;
+        set
+        {
+            _id = value;
+            OnPropertyChanged(nameof(Id));
+        }
+    }
+
     private string _plate;
     public string Plate
     {
@@ -61,10 +78,11 @@ public class ParkVehicleViewModel : ViewModelBase, INotifyDataErrorInfo
             OnPropertyChanged(nameof(FinishAt));
         }
     }
-    private bool _status;
+    private bool? _status;
     public bool Status
     {
-        get => _status; set
+        get => _status ?? true;
+        set
         {
             _status = value;
             OnPropertyChanged(nameof(Status));
@@ -79,6 +97,7 @@ public class ParkVehicleViewModel : ViewModelBase, INotifyDataErrorInfo
             OnPropertyChanged(nameof(Cylinder));
         }
     }
+    public bool HasErrors => _propertyNameToErrorsDictionary is not null && _propertyNameToErrorsDictionary.Any();
 
     public IEnumerable GetErrors(string? propertyName)
         => _propertyNameToErrorsDictionary.GetValueOrDefault(propertyName, new List<string>());

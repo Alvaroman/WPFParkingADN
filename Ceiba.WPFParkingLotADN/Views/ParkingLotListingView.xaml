@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="Ceiba.WPFParkingLotADN.Views.ParkingLotListingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ceiba.WPFParkingLotADN.Views" xmlns:converters="clr-namespace:Ceiba.WPFParkingLotADN.Converters" xmlns:custom="clr-namespace:LoadingSpinnerControl;assembly=LoadingSpinnerControl" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:InverterBooleanToVisibilityConverter x:Key="InverterBooleanToVisibilityConvert"></converters:InverterBooleanToVisibilityConverter>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Style="{StaticResource Header}"
+                       Text="View Reservations">
+            </TextBlock>
+            <Button Grid.Column="1"
+                    Margin="10 0 0 0"
+                    Content="Make Reservation"
+                    Command="{Binding ParkVehicleCommand}"/>
+        </Grid>
+        <Grid  
+            Grid.Row="1" 
+            Margin="0 25 0 0" >
+            <custom:LoadingSpinner
+               Thickness="5"  
+                Diameter="100"
+                IsLoading="{Binding IsLoading}"
+                Color="Black">
+            </custom:LoadingSpinner>
+            <Grid Visibility="{Binding IsLoading, Converter={StaticResource InverterBooleanToVisibilityConvert}}">
+                <TextBlock Text="{Binding ErrorMessage}"
+                 Visibility="{Binding HasErrorMessage,Converter={StaticResource BooleanToVisibilityConverter}}" Foreground="Red"></TextBlock>
+                <ListView  ItemsSource="{Binding Vehicles}" 
+                    Visibility="{Binding HasErrorMessage, Converter={StaticResource InverterBooleanToVisibilityConvert}}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Room ID">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock HorizontalAlignment="Center" Padding="0 0 20 0" Text="{Binding Id}"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="UserName">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Plate}" Padding="0 0 20 0"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Start date">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding StartAt}" Padding="0 0 20 0"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="End date">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Cylinder}" Padding="0 0 20 0"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Grid>
+    </Grid>
+
+
+</UserControl>

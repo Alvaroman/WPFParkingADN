@@ -4,7 +4,7 @@ using System.Net.Http;
 namespace Ceiba.WPFParkingLotADN.Services;
 public class ServiceConnection
 {
-    protected const string BASE_URL = "https://localhost:5443/api/";
+    protected const string BASE_URL = "https://localhost:5443/api/parking/";
     protected readonly HttpClient _client;
     public ServiceConnection()
     {
