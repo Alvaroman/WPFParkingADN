@@ -10,12 +10,12 @@ public class ParkingLotStore
     private readonly ParkingLot _parkingLot;
     private readonly List<ParkingRecord> _parkingRecords;
     private Lazy<Task> _initializeLazy;
-    public event Action<ParkingRecord> VehicleRegistered;
+    public event Action<ParkingRecord> VehicleRegistered = default!;
 
 
     public ParkingLotStore(ParkingLot parkingLot)
     {
-        this._parkingLot = parkingLot;
+        _parkingLot = parkingLot;
         _initializeLazy = new Lazy<Task>(Initialize);
         _parkingRecords = new List<ParkingRecord>();
     }
