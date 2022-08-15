@@ -11,7 +11,7 @@ public class ParkingLotStore
     private readonly List<ParkingRecord> _parkingRecords;
     private Lazy<Task> _initializeLazy;
     public event Action<ParkingRecord> VehicleRegistered = default!;
-
+    public IEnumerable<ParkingRecord> ParkedVehicles => _parkingRecords;
 
     public ParkingLotStore(ParkingLot parkingLot)
     {
@@ -31,7 +31,7 @@ public class ParkingLotStore
             throw;
         }
     }
-    public async Task RegisterVehicle(ParkingRecord parkingRecord)
+    public async Task ParkVehicle(ParkingRecord parkingRecord)
     {
         await _parkingLot.ParkVehicle(parkingRecord);
         _parkingRecords.Add(parkingRecord);
