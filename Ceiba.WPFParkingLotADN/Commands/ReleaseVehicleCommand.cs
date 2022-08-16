@@ -24,6 +24,6 @@ public class ReleaseVehicleCommand : AsyncCommandBase
     {
         var cost = await _parkingLotStore.ReleaseVehicle(_vehicleParkedViewModel.Id);
         _vehicleListingViewModel.UpdateParkedVehicles(_parkingLotStore.ParkedVehicles);
-        MessageBox.Show($"Vehicle releaes correctly. The cost is: {cost}.", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
+        MessageBox.Show($"Vehicle released correctly. The cost is: {cost}.", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 }
