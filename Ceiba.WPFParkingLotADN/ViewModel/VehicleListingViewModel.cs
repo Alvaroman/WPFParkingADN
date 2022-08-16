@@ -47,7 +47,6 @@ public class VehicleListingViewModel : ViewModelBase
     public IEnumerable<VehicleParkedViewModel> Vehicles => _vehicles;
     public ICommand ParkVehicleCommand { get; }
     public ICommand LoadVehiclesCommand { get; }
-    public ICommand ReleaseVehicleCommand { get; }
 
     public override void Dispose()
     {
@@ -57,7 +56,7 @@ public class VehicleListingViewModel : ViewModelBase
 
     private void OnVehicleParked(ParkingRecord parkingRecord)
     {
-        VehicleParkedViewModel vehicleParkedViewModel = new VehicleParkedViewModel(parkingRecord);
+        VehicleParkedViewModel vehicleParkedViewModel = new VehicleParkedViewModel(parkingRecord, _parkingLotStore);
         _vehicles.Add(vehicleParkedViewModel);
     }
     public static VehicleListingViewModel LoadViewModel(ParkingLotStore parkingLotStore, NavigationService<ParkVehicleViewModel> navigationService)
@@ -71,7 +70,7 @@ public class VehicleListingViewModel : ViewModelBase
         _vehicles.Clear();
         foreach (ParkingRecord vehicle in parkingRecords)
         {
-            VehicleParkedViewModel vehicleParkedViewModel = new VehicleParkedViewModel(vehicle);
+            VehicleParkedViewModel vehicleParkedViewModel = new VehicleParkedViewModel(vehicle, _parkingLotStore);
             _vehicles.Add(vehicleParkedViewModel);
         }
 

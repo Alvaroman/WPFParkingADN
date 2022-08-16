@@ -17,16 +17,17 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*">
+                </ColumnDefinition>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"
                        Style="{StaticResource Header}"
-                       Text="View Reservations">
+                       Text="View parked vehicles">
             </TextBlock>
             <Button Grid.Column="1"
                     Margin="10 0 0 0"
-                    Content="Make Reservation"
+                    Content="Park vehicle"
                     Command="{Binding ParkVehicleCommand}"/>
         </Grid>
         <Grid  
@@ -50,31 +51,45 @@
                     </ListView.ItemContainerStyle>
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Room ID">
+                            <GridViewColumn Header="Vehicle type">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock HorizontalAlignment="Center" Padding="0 0 20 0" Text="{Binding Id}"></TextBlock>
+                                        <TextBlock Text="{Binding VehicleTypeName}" Padding="0 0 20 0"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="UserName">
+                            <GridViewColumn Header="Plate">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Plate}" Padding="0 0 20 0"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="Start date">
+                            <GridViewColumn Header="Started at">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding StartAt}" Padding="0 0 20 0"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="End date">
+                            <GridViewColumn Header="Cylinder">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Cylinder}" Padding="0 0 20 0"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Request charge">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Get charge" Command="{Binding ReleaseCommand}"></Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Release vehicle">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Release" Command="{Binding GetChargeCommand}"></Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

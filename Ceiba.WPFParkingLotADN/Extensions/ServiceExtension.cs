@@ -1,6 +1,7 @@
 ﻿using Ceiba.WPFParkingLotADN.Model;
 using Ceiba.WPFParkingLotADN.Services;
 using Ceiba.WPFParkingLotADN.Services.AlreadyRegisterCarValidator;
+using Ceiba.WPFParkingLotADN.Services.GetChar;
 using Ceiba.WPFParkingLotADN.Services.ParkingLotCreator;
 using Ceiba.WPFParkingLotADN.Services.ParkingLotProvider;
 using Ceiba.WPFParkingLotADN.Services.ParkingLotRelease;
@@ -19,6 +20,7 @@ public static class ServiceExtension
         services.AddSingleton<IAlreadyRegisteredCarValidator, AlreadyRegisteredCarValidator>();
         services.AddSingleton<IReleaseParkingLot, ReleaseVehicle>();
         services.AddSingleton<IParkingLotCreator, ParkingLotEntityCreator>();
+        services.AddSingleton<IGetChargeService, GetChargeService>();
         services.AddTransient<ParkingRegistration>();
         services.AddSingleton((s) => new ParkingLot(s.GetRequiredService<ParkingRegistration>()));
 

@@ -34,8 +34,8 @@ public class ParkingLotStore
     public async Task ParkVehicle(ParkingRecord parkingRecord)
     {
         await _parkingLot.ParkVehicle(parkingRecord);
-        _parkingRecords.Add(parkingRecord);
         OnVehicleRegistered(parkingRecord);
+        await Load();
     }
     private void OnVehicleRegistered(ParkingRecord parkingRecord)
     {
@@ -53,4 +53,5 @@ public class ParkingLotStore
         await Load();
         return value;
     }
+    public async Task<decimal> GetCharge(Guid Id) => await _parkingLot.GetCharge(Id);
 }
