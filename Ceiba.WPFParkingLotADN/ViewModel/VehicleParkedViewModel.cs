@@ -12,7 +12,7 @@ public class VehicleParkedViewModel : ViewModelBase
     {
         _parkingRecord = parkingRecord;
         ReleaseCommand = new ReleaseVehicleCommand(parkingStore, this);
-        ReleaseCommand = new ChargeCommand(parkingStore, this);
+        GetChargeCommand = new ChargeCommand(parkingStore, this);
     }
     public ICommand ReleaseCommand { get; }
     public ICommand GetChargeCommand { get; }

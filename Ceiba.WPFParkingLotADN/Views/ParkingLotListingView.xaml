@@ -82,14 +82,14 @@
                             <GridViewColumn Header="Request charge">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="Get charge" Command="{Binding ReleaseCommand}"></Button>
+                                        <Button Content="Get charge" Command="{Binding GetChargeCommand}"></Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
                             <GridViewColumn Header="Release vehicle">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="Release" Command="{Binding GetChargeCommand}"></Button>
+                                        <Button Content="Release" Command="{Binding ReleaseCommand}"></Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

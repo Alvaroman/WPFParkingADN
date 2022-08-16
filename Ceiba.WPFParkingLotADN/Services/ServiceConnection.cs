@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace Ceiba.WPFParkingLotADN.Services;
 public class ServiceConnection
@@ -10,5 +11,6 @@ public class ServiceConnection
     {
         _client = new HttpClient();
         _client.BaseAddress = new Uri(BASE_URL);
+        _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }
 }

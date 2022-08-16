@@ -35,7 +35,7 @@ public class ParkingLotStore
     {
         await _parkingLot.ParkVehicle(parkingRecord);
         OnVehicleRegistered(parkingRecord);
-        await Load();
+        await Initialize();
     }
     private void OnVehicleRegistered(ParkingRecord parkingRecord)
     {
@@ -50,7 +50,8 @@ public class ParkingLotStore
     public async Task<decimal> ReleaseVehicle(Guid Id)
     {
         var value = await _parkingLot.ReleaseVehicle(Id);
-        await Load();
+        OnVehicleRegistered(null);
+        await Initialize();
         return value;
     }
     public async Task<decimal> GetCharge(Guid Id) => await _parkingLot.GetCharge(Id);

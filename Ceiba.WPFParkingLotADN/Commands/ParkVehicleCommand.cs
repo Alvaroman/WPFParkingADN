@@ -40,6 +40,7 @@ public class ParkVehicleCommand : AsyncCommandBase
     public override bool CanExecute(object? parameter) =>
                          !string.IsNullOrEmpty(_parkVehicleViewModel.Plate)
                          && _parkVehicleViewModel.Cylinder > 0
+                         && Enum.IsDefined(typeof(Model.Enum.VehicleType), _parkVehicleViewModel.VehicleType)
                          && base.CanExecute(parameter);
     public override async Task ExecuteAsync(object? parameter)
     {
@@ -66,4 +67,3 @@ public class ParkVehicleCommand : AsyncCommandBase
         }
     }
 }
-    
