@@ -50,8 +50,8 @@ public class ParkingLotStore
     public async Task<decimal> ReleaseVehicle(Guid Id)
     {
         var value = await _parkingLot.ReleaseVehicle(Id);
-        OnVehicleRegistered(null);
-        await Initialize();
+        _initializeLazy = new Lazy<Task>(Initialize);
+        await _initializeLazy.Value;
         return value;
     }
     public async Task<decimal> GetCharge(Guid Id) => await _parkingLot.GetCharge(Id);

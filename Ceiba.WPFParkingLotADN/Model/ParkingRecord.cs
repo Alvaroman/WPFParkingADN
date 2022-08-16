@@ -3,6 +3,7 @@
 namespace Ceiba.WPFParkingLotADN.Model;
 public class ParkingRecord
 {
+    public ParkingRecord() { }
     public ParkingRecord(Guid id,
                          int vehicleType,
                          string plate,

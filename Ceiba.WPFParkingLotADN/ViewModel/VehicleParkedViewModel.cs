@@ -8,10 +8,10 @@ namespace Ceiba.WPFParkingLotADN.ViewModel;
 public class VehicleParkedViewModel : ViewModelBase
 {
     private readonly ParkingRecord _parkingRecord;
-    public VehicleParkedViewModel(ParkingRecord parkingRecord, ParkingLotStore parkingStore)
+    public VehicleParkedViewModel(ParkingRecord parkingRecord, ParkingLotStore parkingStore,VehicleListingViewModel vehicleListingViewModel)
     {
         _parkingRecord = parkingRecord;
-        ReleaseCommand = new ReleaseVehicleCommand(parkingStore, this);
+        ReleaseCommand = new ReleaseVehicleCommand(parkingStore, this, vehicleListingViewModel);
         GetChargeCommand = new ChargeCommand(parkingStore, this);
     }
     public ICommand ReleaseCommand { get; }

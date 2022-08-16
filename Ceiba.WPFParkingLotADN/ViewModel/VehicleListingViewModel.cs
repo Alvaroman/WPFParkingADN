@@ -56,7 +56,7 @@ public class VehicleListingViewModel : ViewModelBase
 
     private void OnVehicleParked(ParkingRecord parkingRecord)
     {
-        VehicleParkedViewModel vehicleParkedViewModel = new VehicleParkedViewModel(parkingRecord, _parkingLotStore);
+        VehicleParkedViewModel vehicleParkedViewModel = new VehicleParkedViewModel(parkingRecord, _parkingLotStore,this);
         _vehicles.Add(vehicleParkedViewModel);
     }
     public static VehicleListingViewModel LoadViewModel(ParkingLotStore parkingLotStore, NavigationService<ParkVehicleViewModel> navigationService)
@@ -70,7 +70,7 @@ public class VehicleListingViewModel : ViewModelBase
         _vehicles.Clear();
         foreach (ParkingRecord vehicle in parkingRecords)
         {
-            VehicleParkedViewModel vehicleParkedViewModel = new VehicleParkedViewModel(vehicle, _parkingLotStore);
+            VehicleParkedViewModel vehicleParkedViewModel = new VehicleParkedViewModel(vehicle, _parkingLotStore,this);
             _vehicles.Add(vehicleParkedViewModel);
         }
 
