@@ -18,8 +18,8 @@ public class VehicleParkedViewModel : ViewModelBase
     public ICommand GetChargeCommand { get; }
     public Guid Id => _parkingRecord.Id;
     public string Plate => _parkingRecord.Plate;
-    public int Cylinder => _parkingRecord.Cylinder;
-    public string StartAt => _parkingRecord.StartedAt.ToString("d");
+    public string Cylinder => _parkingRecord.Cylinder.ToString("N0");
+    public string StartAt => _parkingRecord.StartedAt.ToString("G");
     public string FinishAt => _parkingRecord.FinishedAt.ToString("d");
     public bool Status => _parkingRecord.Status;
     public int VehicleType => _parkingRecord.VehicleType;

@@ -5,100 +5,190 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Ceiba.WPFParkingLotADN.Views" xmlns:converters="clr-namespace:Ceiba.WPFParkingLotADN.Converters" xmlns:custom="clr-namespace:LoadingSpinnerControl;assembly=LoadingSpinnerControl" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             Background="Transparent">
     <UserControl.Resources>
         <converters:InverterBooleanToVisibilityConverter x:Key="InverterBooleanToVisibilityConvert"></converters:InverterBooleanToVisibilityConverter>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+        </Style>
+        <Style TargetType="GridViewColumnHeader">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
     </UserControl.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="350"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*">
-                </ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0"
-                       Style="{StaticResource Header}"
-                       Text="View parked vehicles">
-            </TextBlock>
-            <Button Grid.Column="1"
+            <StackPanel Grid.Row="0" Background="Transparent" Orientation="Horizontal">
+                <Border Width="250" Height="150" Margin="25,20,20,0">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                            <GradientStop Color="#3061A2" Offset="0.0"></GradientStop>
+                            <GradientStop Color="#2DA7E5" Offset="1"></GradientStop>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border.Clip>
+                        <RectangleGeometry RadiusX="10" 
+                                               RadiusY="10" 
+                                               Rect="0,0,250,150">
+                        </RectangleGeometry>
+                    </Border.Clip>
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock
+                                Foreground="White"
+                                FontSize="25"
+                                FontWeight="Bold"
+                                HorizontalAlignment="Center"                               
+                                Margin="0,10,0,0">Cars:</TextBlock>
+                            <TextBlock
+                                Foreground="White"
+                                FontSize="35"
+                                FontWeight="Bold"
+                                Margin="0,0,0,0"
+                                HorizontalAlignment="Center"
+                                Text="{Binding CarQuantity}"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Background="Transparent" Orientation="Horizontal">
+                <Border Width="250" Height="150" Margin="25,20,20,0">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                            <GradientStop Color="#3061A2" Offset="0.0"></GradientStop>
+                            <GradientStop Color="#2DA7E5" Offset="1"></GradientStop>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border.Clip>
+                        <RectangleGeometry RadiusX="10" 
+                                               RadiusY="10" 
+                                               Rect="0,0,250,150">
+                        </RectangleGeometry>
+                    </Border.Clip>
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock
+                                Foreground="White"
+                                FontSize="25"
+                                FontWeight="Bold"
+                                HorizontalAlignment="Center"                               
+                                Margin="0,10,0,0">Motorcycles:</TextBlock>
+                            <TextBlock
+                                Foreground="White"
+                                FontSize="35"
+                                FontWeight="Bold"
+                                Margin="0,0,0,0"
+                                HorizontalAlignment="Center"
+                                Text="{Binding MotorcycleQuantity}"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="350"></RowDefinition>
+                <RowDefinition Height="75"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" Margin="0 12 0 0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*">
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1"
                     Margin="10 0 0 0"
                     Content="Park vehicle"
                     Command="{Binding ParkVehicleCommand}"/>
-        </Grid>
-        <Grid  
-            Grid.Row="1" 
+            </Grid>
+            <Grid  
+            Grid.Row="0" 
             Margin="0 25 0 0" >
-            <custom:LoadingSpinner
+                <custom:LoadingSpinner
                Thickness="5"  
                 Diameter="100"
                 IsLoading="{Binding IsLoading}"
-                Color="Black">
-            </custom:LoadingSpinner>
-            <Grid Visibility="{Binding IsLoading, Converter={StaticResource InverterBooleanToVisibilityConvert}}">
-                <TextBlock Text="{Binding ErrorMessage}"
-                 Visibility="{Binding HasErrorMessage,Converter={StaticResource BooleanToVisibilityConverter}}" Foreground="Red"></TextBlock>
-                <ListView  ItemsSource="{Binding Vehicles}" 
+                Color="White">
+                </custom:LoadingSpinner>
+                <Grid Visibility="{Binding IsLoading, Converter={StaticResource InverterBooleanToVisibilityConvert}}">
+                    <TextBlock Text="{Binding ErrorMessage}"
+                 Visibility="{Binding HasErrorMessage,Converter={StaticResource BooleanToVisibilityConverter}}" Foreground="White"></TextBlock>
+                    <ListView  ItemsSource="{Binding Vehicles}" Background="Transparent"
                     Visibility="{Binding HasErrorMessage, Converter={StaticResource InverterBooleanToVisibilityConvert}}">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Vehicle type">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding VehicleTypeName}" Padding="0 0 20 0"></TextBlock>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Plate">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Plate}" Padding="0 0 20 0"></TextBlock>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Started at">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding StartAt}" Padding="0 0 20 0"></TextBlock>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Cylinder">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Cylinder}" Padding="0 0 20 0"></TextBlock>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Request charge">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="Get charge" Command="{Binding GetChargeCommand}"></Button>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Release vehicle">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="Release" Command="{Binding ReleaseCommand}"></Button>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                <Setter Property="Foreground" Value="White"></Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Vehicle type">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding VehicleTypeName}"
+                                                       Padding="0 0 20 0">
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Plate">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Plate}" Padding="0 0 20 0"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Started at">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding StartAt}" Padding="0 0 20 0"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Cylinder">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Cylinder}" Padding="0 0 20 0"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Request charge">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Get charge" Command="{Binding GetChargeCommand}"></Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Release vehicle">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Release" Command="{Binding ReleaseCommand}"></Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
-
 
 </UserControl>

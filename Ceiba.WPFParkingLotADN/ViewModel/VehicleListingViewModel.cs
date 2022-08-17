@@ -5,6 +5,7 @@ using Ceiba.WPFParkingLotADN.Stores;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Ceiba.WPFParkingLotADN.ViewModel;
@@ -43,6 +44,8 @@ public class VehicleListingViewModel : ViewModelBase
             OnPropertyChanged(nameof(IsLoading));
         }
     }
+    public int CarQuantity => _vehicles.Count(x => x.VehicleType == (int)Model.Enum.VehicleType.Car);
+    public int MotorcycleQuantity => _vehicles.Count(x => x.VehicleType == (int)Model.Enum.VehicleType.Motorcycle);
     public bool HasErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
     public IEnumerable<VehicleParkedViewModel> Vehicles => _vehicles;
     public ICommand ParkVehicleCommand { get; }
@@ -56,7 +59,7 @@ public class VehicleListingViewModel : ViewModelBase
 
     private void OnVehicleParked(ParkingRecord parkingRecord)
     {
-        VehicleParkedViewModel vehicleParkedViewModel = new VehicleParkedViewModel(parkingRecord, _parkingLotStore,this);
+        VehicleParkedViewModel vehicleParkedViewModel = new VehicleParkedViewModel(parkingRecord, _parkingLotStore, this);
         _vehicles.Add(vehicleParkedViewModel);
     }
     public static VehicleListingViewModel LoadViewModel(ParkingLotStore parkingLotStore, NavigationService<ParkVehicleViewModel> navigationService)
@@ -70,7 +73,7 @@ public class VehicleListingViewModel : ViewModelBase
         _vehicles.Clear();
         foreach (ParkingRecord vehicle in parkingRecords)
         {
-            VehicleParkedViewModel vehicleParkedViewModel = new VehicleParkedViewModel(vehicle, _parkingLotStore,this);
+            VehicleParkedViewModel vehicleParkedViewModel = new VehicleParkedViewModel(vehicle, _parkingLotStore, this);
             _vehicles.Add(vehicleParkedViewModel);
         }
 

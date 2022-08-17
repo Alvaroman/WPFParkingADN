@@ -15,13 +15,11 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Register vehicle" Style="{StaticResource Header}"></TextBlock>
         <Grid Grid.Row="1" Margin="0 25 0 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
-
             <TextBlock Grid.Row="0"  Text="Vehicle type"></TextBlock>
             <ComboBox Grid.Row="1" x:Name="VehicleTypes" SelectedIndex="{Binding Path=VehicleType}" ItemsSource="{Binding VehicleTypesArray}">
             </ComboBox>

@@ -6,18 +6,49 @@
         xmlns:vms="clr-namespace:Ceiba.WPFParkingLotADN.ViewModel"
         xmlns:local="clr-namespace:Ceiba.WPFParkingLotADN" xmlns:views="clr-namespace:Ceiba.WPFParkingLotADN.Views"
         mc:Ignorable="d"
-        Title="Parking Lot" Height="450" Width="800">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid Margin="20 10" MaxWidth="600">
-            <Grid.Resources>
-                <DataTemplate DataType="{x:Type vms:VehicleListingViewModel}">
-                    <views:ParkingLotListingView></views:ParkingLotListingView>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type vms:ParkVehicleViewModel}">
-                    <views:ParkVehicleView></views:ParkVehicleView>
-                </DataTemplate>
-            </Grid.Resources>
-            <ContentControl Content="{Binding CurrentViewModel}"></ContentControl>
+        Title="Parking Lot" 
+        Height="600" Width="920"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border Background="#272537"
+            CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto">
+                </RowDefinition>
+                <RowDefinition Height="800">
+                </RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <TextBlock Grid.Row="0"
+                       Text="Parking Lot"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Foreground="White"
+                       FontSize="42"
+                       FontWeight="Bold"
+                           FontFamily="e"
+                       Margin="30,20,0,0"></TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="1" >
+                <Grid Margin="0 10" >
+                    <Grid.Resources >
+                        <DataTemplate DataType="{x:Type vms:VehicleListingViewModel}">
+                            <views:ParkingLotListingView></views:ParkingLotListingView>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vms:ParkVehicleViewModel}">
+                            <views:ParkVehicleView></views:ParkVehicleView>
+                        </DataTemplate>
+                    </Grid.Resources>
+                    <ContentControl Content="{Binding CurrentViewModel}"></ContentControl>
+                </Grid>
+            </StackPanel>
         </Grid>
-    </ScrollViewer>
+
+    </Border>
 </Window>
