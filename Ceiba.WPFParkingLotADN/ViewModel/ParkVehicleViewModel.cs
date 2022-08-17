@@ -49,10 +49,10 @@ public class ParkVehicleViewModel : ViewModelBase, INotifyDataErrorInfo
         get => _vehicleType;
         set
         {
-            _vehicleType = value;
+            _vehicleType = value + 1;
             OnPropertyChanged(nameof(VehicleType));
             ClearErrors(nameof(VehicleType));
-            if (Enum.IsDefined(typeof(VehicleType), _vehicleType))
+            if (!Enum.IsDefined(typeof(VehicleType), _vehicleType))
             {
                 AddError("This is not an allowed vehicle.", nameof(VehicleType));
             }
@@ -97,6 +97,7 @@ public class ParkVehicleViewModel : ViewModelBase, INotifyDataErrorInfo
             OnPropertyChanged(nameof(Cylinder));
         }
     }
+    public Array VehicleTypesArray { get => Enum.GetValues(typeof(Model.Enum.VehicleType)); }
     public bool HasErrors => _propertyNameToErrorsDictionary is not null && _propertyNameToErrorsDictionary.Any();
 
     public IEnumerable GetErrors(string? propertyName)

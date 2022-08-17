@@ -23,10 +23,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0"  Text="Vehicle type"></TextBlock>
-            <ComboBox Grid.Row="1" x:Name="VehicleTypes" SelectedIndex="{Binding Path=VehicleType}">
-                <TextBlock >Select a vehicle type</TextBlock>
-                <TextBlock >Car</TextBlock>
-                <TextBlock>Motorcycle</TextBlock>
+            <ComboBox Grid.Row="1" x:Name="VehicleTypes" SelectedIndex="{Binding Path=VehicleType}" ItemsSource="{Binding VehicleTypesArray}">
             </ComboBox>
         </Grid>
         <Grid Grid.Row="2" Margin="0 25 0 0">
@@ -49,21 +46,7 @@
             <TextBlock Grid.Row="0" Grid.Column="1" Margin="5 0 0 0" Text="Cylinder"/>
             <TextBox Grid.Row="1" Grid.Column="1" Margin="5 5 0 0" Text="{Binding Cylinder, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
-        <Grid Grid.Row="4" Margin="0 10 0 0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" SharedSizeGroup="FirstColumn"/>
-                <ColumnDefinition Width="auto" SharedSizeGroup="SecondColumn"/>
-            </Grid.ColumnDefinitions>
-
-            <TextBlock Grid.Row="0" Grid.Column="0"  Text="Start date"/>
-            <TextBox  Grid.Row="1" Grid.Column="0" Margin="0 5 0 0" Text="{Binding StartAt, UpdateSourceTrigger=PropertyChanged}"/>
-
-        </Grid>
-        <StackPanel Grid.Row="5" Margin="0 25 0 0" Orientation="Horizontal">
+        <StackPanel Grid.Row="4" Margin="0 25 0 0" Orientation="Horizontal">
             <Button Content="Submit" Command="{Binding ParkCommand}"></Button>
             <Button Margin="5 0 0 0" Command="{Binding CancelCommand}" Content="Cancel"></Button>
         </StackPanel>
