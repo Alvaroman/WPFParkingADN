@@ -22,8 +22,12 @@ public class ReleaseVehicleCommand : AsyncCommandBase
     }
     public override async Task ExecuteAsync(object? parameter)
     {
-        var cost = await _parkingLotStore.ReleaseVehicle(_vehicleParkedViewModel.Id);
-        _vehicleListingViewModel.UpdateParkedVehicles(_parkingLotStore.ParkedVehicles);
-        MessageBox.Show($"Vehicle released correctly. The cost is: {cost}.", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
-    }
+        var dialogResult = MessageBox.Show($"Do you want to realease this vehicle?", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+        if (dialogResult == MessageBoxResult.Yes)
+        {
+            var cost = await _parkingLotStore.ReleaseVehicle(_vehicleParkedViewModel.Id);
+            _vehicleListingViewModel.UpdateParkedVehicles(_parkingLotStore.ParkedVehicles);
+            MessageBox.Show($"Vehicle released correctly. The cost is: {cost}.", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+     }
 }

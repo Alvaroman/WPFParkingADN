@@ -16,10 +16,10 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="600"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="350"></RowDefinition>
+            <RowDefinition Height="470"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
@@ -29,8 +29,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Row="0" Background="Transparent" Orientation="Horizontal">
-                <Border Width="250" Height="150" Margin="25,10,20,0">
+            <StackPanel Grid.Row="0" 
+                        Background="Transparent" 
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center">
+                <Border Width="250" Height="150" Margin="25,50,20,0">
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                             <GradientStop Color="#3061A2" Offset="0.0"></GradientStop>
@@ -63,7 +66,7 @@
                 </Border>
             </StackPanel>
             <StackPanel Grid.Row="1" Background="Transparent" Orientation="Horizontal">
-                <Border Width="250" Height="150" Margin="25,20,20,0">
+                <Border Width="250" Height="150" Margin="25,-35,20,0">
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                             <GradientStop Color="#3061A2" Offset="0.0"></GradientStop>
@@ -99,14 +102,14 @@
         <Grid Grid.Column="1" VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"></RowDefinition>
-                <RowDefinition Height="220"></RowDefinition>
+                <RowDefinition Height="350"></RowDefinition>
                 <RowDefinition Height="75"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" HorizontalAlignment="left"
                   Margin="0 10 0 0">
                 <TextBox Width="250" 
                          Height="40"
-                         Style="{StaticResource ModernTextbox}"></TextBox>
+                         Style="{StaticResource ModernTextboxSearch}"></TextBox>
             </Grid>
             <Grid Grid.Row="2" Margin="0 0 0 0" >
                 <Grid.ColumnDefinitions>
@@ -121,7 +124,29 @@
                     FontSize="16"
                     Foreground="White"
                     Content="Park vehicle"
-                    Command="{Binding ParkVehicleCommand}"/>
+                    Command="{Binding ParkVehicleCommand}">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="TextElement.FontFamily" Value="Arial"></Setter>
+                            <Setter Property="Background" Value="#3061A2"></Setter>
+                            <Setter Property="Cursor" Value="Hand"></Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF4C70"></Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="12"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"></ContentPresenter>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </Grid>
             <Grid  
             Grid.Row="1" 
@@ -141,6 +166,16 @@
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
                                 <Setter Property="Foreground" Value="White"></Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="Transparent"></Setter>
+                                        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="Transparent"></Setter>
+                                        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                                    </Trigger>
+                                </Style.Triggers>
                             </Style>
                         </ListView.ItemContainerStyle>
                         <ListView.View>
@@ -178,14 +213,24 @@
                                 <GridViewColumn Header="Request charge">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Content="Get charge" Command="{Binding GetChargeCommand}"></Button>
+                                            <Button Content="Get charge" 
+                                                     Width="70"
+                                                    Height="25"
+                                                    Command="{Binding GetChargeCommand}"
+                                                    Style="{StaticResource ModernButton}"></Button>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="Release vehicle">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Content="Release" Command="{Binding ReleaseCommand}"></Button>
+                                            <Button Content="Release" 
+                                                    Width="65"
+                                                    Height="25"
+                                                    Margin="5"
+                                                    HorizontalAlignment="Center"
+                                                    Command="{Binding ReleaseCommand}"
+                                                     Style="{StaticResource ModernButtonDanger}"></Button>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
