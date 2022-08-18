@@ -7,16 +7,11 @@
              mc:Ignorable="d" 
              Background="Transparent">
     <UserControl.Resources>
-        <converters:InverterBooleanToVisibilityConverter x:Key="InverterBooleanToVisibilityConvert"></converters:InverterBooleanToVisibilityConverter>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
-        <Style TargetType="Button">
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="Background" Value="Transparent"></Setter>
-        </Style>
-        <Style TargetType="GridViewColumnHeader">
-            <Setter Property="Background" Value="Transparent"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/Texbox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -35,7 +30,7 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0" Background="Transparent" Orientation="Horizontal">
-                <Border Width="250" Height="150" Margin="25,20,20,0">
+                <Border Width="250" Height="150" Margin="25,10,20,0">
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                             <GradientStop Color="#3061A2" Offset="0.0"></GradientStop>
@@ -103,10 +98,17 @@
         </Grid>
         <Grid Grid.Column="1" VerticalAlignment="Top">
             <Grid.RowDefinitions>
-                <RowDefinition Height="350"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="220"></RowDefinition>
                 <RowDefinition Height="75"></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="1" Margin="0 12 0 0" >
+            <Grid Grid.Row="0" HorizontalAlignment="left"
+                  Margin="0 10 0 0">
+                <TextBox Width="250" 
+                         Height="40"
+                         Style="{StaticResource ModernTextbox}"></TextBox>
+            </Grid>
+            <Grid Grid.Row="2" Margin="0 0 0 0" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*">
                     </ColumnDefinition>
@@ -114,12 +116,16 @@
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="1"
                     Margin="10 0 0 0"
+                    Height="40"
+                    Width="100"
+                    FontSize="16"
+                    Foreground="White"
                     Content="Park vehicle"
                     Command="{Binding ParkVehicleCommand}"/>
             </Grid>
             <Grid  
-            Grid.Row="0" 
-            Margin="0 25 0 0" >
+            Grid.Row="1" 
+            Margin="0 10 0 0" >
                 <custom:LoadingSpinner
                Thickness="5"  
                 Diameter="100"
