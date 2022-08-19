@@ -140,13 +140,14 @@
         </Setter>
     </Style>
     <Style TargetType="{x:Type ComboBox}" x:Key="ModernCombobox">
-        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontFamily" Value="arial"></Setter>
         <Setter Property="Foreground">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0.3,0" EndPoint="0.3,1">
                     <LinearGradientBrush.GradientStops>
                         <GradientStop Offset="0.0" Color="Black"/>
-                        <GradientStop Offset="0.0" Color="White"/>
+                        <GradientStop Offset="0.0" Color="#272537"/>
                     </LinearGradientBrush.GradientStops>
                 </LinearGradientBrush>
             </Setter.Value>

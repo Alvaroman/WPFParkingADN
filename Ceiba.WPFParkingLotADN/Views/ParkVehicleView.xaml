@@ -36,7 +36,9 @@
             <ComboBox Grid.Row="1" x:Name="VehicleTypes" 
                       SelectedIndex="{Binding Path=VehicleType}"
                       ItemsSource="{Binding VehicleTypesArray}"
-                      Style="{StaticResource ModernCombobox}">
+                      Style="{StaticResource ModernCombobox}"
+                      HorizontalAlignment="Left"
+                      Width="250">
             </ComboBox>
         </Grid>
         <Grid Grid.Row="1" Margin="0 25 0 0">
